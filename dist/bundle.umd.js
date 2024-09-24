@@ -208,6 +208,48 @@
             };
             return mask.replace(/Y|y|M|m|D|d|L|l|h|H|I|S|i|s/g, function (match) { return replace[match].toString(); });
         };
+        D.prototype.when = function () {
+            var whenDate = new Date();
+            var tempTime = this.tempDate.getTime() - whenDate.getTime();
+            var tempDays = Math.floor(tempTime / (1000 * 60 * 60 * 24));
+            var description;
+            if (tempDays === 0) {
+                return 'today';
+            }
+            else if (tempDays > 0) {
+                var futureDate = new Date(whenDate);
+                futureDate.setDate(whenDate.getDate() + tempDays);
+                var whenYears = futureDate.getFullYear() - whenDate.getFullYear();
+                var whenMonths = futureDate.getMonth() - whenDate.getMonth();
+                var whenDays = futureDate.getDate() - whenDate.getDate();
+                if (whenYears > 0) {
+                    description = "".concat(whenYears, " year").concat(whenYears > 1 ? 's' : '', " from now");
+                }
+                else if (whenMonths > 0) {
+                    description = "".concat(whenMonths, " month").concat(whenMonths > 1 ? 's' : '', " from now");
+                }
+                else {
+                    description = "".concat(whenDays, " day").concat(whenDays > 1 ? 's' : '', " from now");
+                }
+            }
+            else {
+                var pastDate = new Date(whenDate);
+                pastDate.setDate(whenDate.getDate() + tempDays); // diffDays is negative
+                var pastYears = whenDate.getFullYear() - pastDate.getFullYear();
+                var pastMonth = whenDate.getMonth() - pastDate.getMonth();
+                var pastDays = whenDate.getDate() - pastDate.getDate();
+                if (pastYears > 0) {
+                    description = "".concat(pastYears, " year").concat(pastYears > 1 ? 's' : '', " ago");
+                }
+                else if (pastMonth > 0) {
+                    description = "".concat(pastMonth, " month").concat(pastMonth > 1 ? 's' : '', " ago");
+                }
+                else {
+                    description = "".concat(pastDays, " day").concat(pastDays > 1 ? 's' : '', " ago");
+                }
+            }
+            return description;
+        };
         return D;
     }());
 

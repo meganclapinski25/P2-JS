@@ -127,8 +127,52 @@ format(mask: string): string {
 
     return mask.replace(/Y|y|M|m|D|d|L|l|h|H|I|S|i|s/g, (match: string) => replace[match].toString());
   }
+
+  when(): string{
+	const whenDate = new Date()
+	const tempTime = this.tempDate.getTime() - whenDate.getTime();
+	const tempDays = Math.floor(tempTime / (1000 * 60 * 60 * 24));
+
+	let description: string;
+	if (tempDays === 0) {
+		return 'today';
+	  } else if (tempDays > 0) {
+		const futureDate = new Date(whenDate);
+		futureDate.setDate(whenDate.getDate() + tempDays);
+
+		const whenYears = futureDate.getFullYear() - whenDate.getFullYear();
+     	const whenMonths = futureDate.getMonth() - whenDate.getMonth();
+      	const whenDays = futureDate.getDate() - whenDate.getDate();
+
+		  if (whenYears > 0) {
+			description = `${whenYears} year${whenYears > 1 ? 's' : ''} from now`;
+		  } else if (whenMonths > 0) {
+			description = `${whenMonths} month${whenMonths > 1 ? 's' : ''} from now`;
+		  } else {
+			description = `${whenDays} day${whenDays > 1 ? 's' : ''} from now`;
+		  }
+		} else {
+		  const pastDate = new Date(whenDate);
+		  pastDate.setDate(whenDate.getDate() + tempDays); // diffDays is negative
 	
-}
+		  const pastYears = whenDate.getFullYear() - pastDate.getFullYear();
+		  const pastMonth = whenDate.getMonth() - pastDate.getMonth();
+		  const pastDays = whenDate.getDate() - pastDate.getDate();
+	
+		  if (pastYears > 0) {
+			description = `${pastYears} year${pastYears > 1 ? 's' : ''} ago`;
+		  } else if (pastMonth > 0) {
+			description = `${pastMonth} month${pastMonth > 1 ? 's' : ''} ago`;
+		  } else {
+			description = `${pastDays} day${pastDays > 1 ? 's' : ''} ago`;
+		  }
+		}
+	
+		return description;
+	  }
+  }
+	
+
 //-----Working------// 
 
 //const d = new D(2017, 0, 2, 3, 4, 5)

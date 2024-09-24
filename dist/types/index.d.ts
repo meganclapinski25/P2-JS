@@ -19,5 +19,6 @@ declare class D {
     get secs(): number;
     get paddedSecs(): string;
     format(mask: string): string;
+    when(): string;
 }
 export { D };

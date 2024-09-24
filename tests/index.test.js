@@ -71,3 +71,17 @@ test('Seconds', () =>{
     const d = new D(2017, 0, 2, 3, 4, 5);
     expect(d.secs).toBe(5)
 })
+
+test('when function year ago', () =>{
+    const d = new D(2017, 9, 24);
+    expect(d.when()).toBe('6 years ago')
+})
+test('when function year from now', () =>{
+    const d = new D(2030, 9, 24);
+    expect(d.when()).toBe('6 years from now')
+})
+
+test('when function day ago', () =>{
+    const d = new D(2024, 9, 22);
+    expect(d.when()).toBe('2 days ago')
+})
