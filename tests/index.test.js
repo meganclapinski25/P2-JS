@@ -74,14 +74,30 @@ test('Seconds', () =>{
 
 test('when function year ago', () =>{
     const d = new D(2017, 9, 24);
-    expect(d.when()).toBe('6 years ago')
+    expect(d.when()).toBe('7 years ago')
 })
 test('when function year from now', () =>{
     const d = new D(2030, 9, 24);
-    expect(d.when()).toBe('6 years from now')
+    expect(d.when()).toBe('in 6 years')
 })
 
 test('when function day ago', () =>{
-    const d = new D(2024, 9, 22);
-    expect(d.when()).toBe('2 days ago')
+    const d = new D(2024, 8, 10);
+    console.log(d);
+    expect(d.when()).toBe('16 days ago')
+})
+test('when function day from now', () =>{
+    const d = new D(2024, 8, 30);
+    console.log(d);
+    expect(d.when()).toBe('in 4 days ')
+})
+test('when function month from now', () =>{
+    const d = new D(2024, 10, 10);
+    console.log(d);
+    expect(d.when()).toBe('in a month')
+})
+test('when function mmonth ago', () =>{
+    const d = new D(2024, 3, 10);
+    console.log(d);
+    expect(d.when()).toBe('6 months ago')
 })
