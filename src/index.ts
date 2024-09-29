@@ -94,7 +94,7 @@ class D {
 	}
 
 	get paddedMins(): string {
-		const copyMins = this.tempDate.getMinutes();
+		const copyMins = this.tempDate.getSeconds();
 		const padMins = copyMins.toString().padStart(2, '0');
 		return padMins
 	}

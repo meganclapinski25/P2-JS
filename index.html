@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Library</title>
+    <script src="dist/bundle.umd.js"></script>
+</head>
+
+<body>
+    <button id="test">Run Test</button>
+    <script>
+        document.getElementById('test').addEventListener('click', () => {
+
+            const D = MyLibrary.D;
+
+            const d = new D(2021, 8, 30, 3, 5, 9)
+                
+            document.getElementById('year-test').textContent = "Year Long: " + d.year + " Year Short: " + d.yr;
+            document.getElementById('month-test').textContent = "Month Long: " + d.month + " Month Short: " + d.mon;
+            document.getElementById('day-test').textContent = "Day Long: " + d.day + " Day Short: " + d.dy;
+            document.getElementById('hour-test').textContent = "Hour Padded: " + d.paddedHours + " Hour Short: " + d.hrs;
+            document.getElementById('minute-test').textContent = "Minute Padded: " + d.paddedMins + " Minute Short: " + d.mins;
+            document.getElementById('second-test').textContent = "Second Padded: " + d.paddedSecs + " Second Short: " + d.secs;
+
+            const dTemp = new D(2025, 2, 4, 1, 12, 8)
+            document.getElementById('when-test').textContent = "The Date is: " + dTemp.tempDate.toDateString() + " That is: " +dTemp.when();
+            document.getElementById('format-test').textContent = dTemp.format('Y/M/D H:I:S');
+
+
+        });
+    </script>
+        <p id = "year-test"> </p>
+        <p id = "month-test"> </p>
+        <p id = "day-test"> </p>
+        <p id = "hour-test"> </p>
+        <p id = "minute-test"> </p>
+        <p id = "second-test"> </p>
+        <p id = "when-test"> </p>
+        <p id = "format-test"> </p>
+</body>
+</html>
